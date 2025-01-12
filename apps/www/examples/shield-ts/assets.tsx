@@ -7,6 +7,7 @@ import {
   useTable
 } from "@raystack/apsara";
 
+
 import { toast, ToastContainer, Avatar, AvatarGroup, Button, Spinner, DropdownMenu, Breadcrumb, Chip, Flex, Text, Checkbox, InputField, Badge, Radio, Tabs } from "@raystack/apsara/v1";
 
 import { getData, Payment } from "./data";
@@ -95,6 +96,11 @@ export const Assets = () => {
   const [page, setPage] = useState(1);
   const [hasMoreData, setHasMoreData] = useState(true);
   const [data, setData] = useState<Payment[]>([]);
+  const [selectedDate, setSelectedDate] = useState<Date>();
+  const [dateRange, setDateRange] = useState({
+    from: new Date(),
+    to: new Date(),
+  });
 
   const loadMoreData = useCallback(() => {
     if (!isLoading && hasMoreData) {
@@ -163,6 +169,7 @@ export const Assets = () => {
         <DataTable.Toolbar>
           <AssetsHeader />
           <DataTable.FilterChips />
+          
           <Flex gap="small">
             <Button size="small" variant="primary" onClick={() => showToast("success")}>Show Success Toast!</Button>
             <Button size="small" variant="danger" onClick={() => showToast("error")}>Show Error Toast with custom icon</Button>
@@ -300,6 +307,7 @@ const AssetsHeader = () => {
           />
         </AvatarGroup> */}
 
+        
         {/* Add Chip examples */}
         <Flex gap="small" align="center">
           {/* <Chip isDismissible variant="filled" size="small" style="accent" leadingIcon={<HomeIcon />} trailingIcon={<CheckIcon />}>Default</Chip> */}
